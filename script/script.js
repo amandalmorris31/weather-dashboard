@@ -97,7 +97,7 @@ $.ajax({
         lon=response.coord.lon;
         console.log(response.coord.lat)
         lat=response.coord.lat;
-        var uvURL= "http://api.openweathermap.org/data/2.5/uvi?appid="+apiKey+"&lat="+lat+"&lon="+lon;
+        var uvURL= "https://api.openweathermap.org/data/2.5/uvi?appid="+apiKey+"&lat="+lat+"&lon="+lon;
         //http://api.openweathermap.org/data/2.5/uvi?appid={appid}&lat={lat}&lon={lon}
         console.log(uvURL);
         
