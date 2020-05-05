@@ -20,9 +20,9 @@
         <!-- <div class="aside col-3"> -->
                 <!-- this is where the search textarea will go, plus cities in local storage (search history) listed beneath -->
                 <div class="cities col-3">
-                  <form id="city-form" method="POST">
+                  <form id="city-form" onsubmit="submitCity()">
                     <!-- <label for="city-text">Add a city:</label> -->
-                    <input type="text" placeholder="Enter city" name="city-text" id="city-text" />
+                    <input type="text" placeholder="Enter city" name="city-text" id="city-text" autocomplete="off" />
                   </form>
                   <ul id="city-list"></ul>
                 </div>
@@ -31,7 +31,7 @@
         <div class="section col-9">
                 <!-- this is where the city from local storage will display with data from openweathermap
                 with today's info -->
-                <h2>Main area with city displayed</h2>
+                <h2 id="currentCity">Main area with city displayed</h2>
                 <p id="temp">Temperature:</p>
                 <p id="humidity">Humidity:</p>
                 <p id="wind-speed">Wind Speed:</p>
@@ -57,10 +57,12 @@
 
 
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="./script/city-list.js"></script>
 <script src="./script/script.js"></script>
+
 
 
     

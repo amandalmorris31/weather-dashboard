@@ -7,6 +7,17 @@ var cities = [];
 
 init();
 
+function submitCity(event) {
+  console.log("I've been clicked",event);
+  var cityVal = $("#city-text").val();
+  console.log(cityVal);
+
+  oneDay(cityVal);
+  fiveDay(cityVal);
+}
+
+
+
 function renderCities() {
   // Clear cityList element and update cityCountSpan
   cityList.innerHTML = "";
@@ -20,15 +31,9 @@ function renderCities() {
     li.textContent = city;
     li.setAttribute("data-index", i);
 
-    var button = document.createElement("button");
-    button.textContent = "Remove";
-
-    li.appendChild(button);
-    cityList.appendChild(li);
-
-    // $(li).append(button);
-    // $(cityList).append(li);
-    // console.log(li);
+ 
+    $(cityList).append(li);
+    console.log(li);
   }
 }
 

@@ -64,3 +64,8 @@ li button:hover {
 .card-body {
   background-color: darkcyan;
 }
+.card-body p {
+font-size: 14px;
+font-weight: bold;
+
+}

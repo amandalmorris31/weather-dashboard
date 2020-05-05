@@ -61,8 +61,7 @@ $.ajax({
       
     //A. get the data (console.log it) 
     console.log(response);
-    
-    
+     
     // (temp, 
     console.log(response.main.temp)
     var tempNum=(((response.main.temp-273.15)*1.8)+32);
@@ -71,10 +70,9 @@ $.ajax({
     var todayTemp="Temperature: "+tempNum.toFixed(2)+" \u00B0"+"F";
     $("#temp").text(todayTemp);
 
-
-
-    // var todayTemp="Temperature: "+tempNum.toFixed(2)+" \u00B0"+"F";
-    // console.log(todayTemp);
+    //city
+    console.log(response.name);
+    $("#currentCity").text(response.name);
 
     //humidity,
     console.log(response.main.humidity)
@@ -132,6 +130,7 @@ function determineUvColor(uvNum){
       }
 }
 
+
 //---------------------------------------
 // FIVE day function
 
@@ -139,10 +138,11 @@ function determineUvColor(uvNum){
 // console.log(apiKey)
 
 
-
 fiveDay(city);
 
 function fiveDay(city){
+  //empty out the fiveday area before starting (removes over appending issue)
+  $("#fiveday").empty();
     //1. div that displays 5 day forecast of city from userinput with data  (date, icon, temp, humidity) 
 
 var queryURL= "https://api.openweathermap.org/data/2.5/forecast?q="+city+"&appid="+apiKey;
@@ -166,6 +166,9 @@ $.ajax({
     // //A. get the data (console.log it) 
      //     //B.dynamically create the city in front end
     for (var i = 0; i < 5; i++) {
+
+
+
       var d1=$("<div>");
       //<div></div>
       d1.attr("class","col mb-2");
@@ -180,37 +183,67 @@ $.ajax({
       //<div></div>
       d3.attr("class", "card-body");
 
-
+      
+      
+      //date
       var h5=$("<h5>");
       //<h5></h5>
+      h5.text(moment(response.list[i*8].dt_txt).format('L'));
+      
 
 
-      var p=$("<p>");
+//icon  // //the following is the icon
+console.log(response.list[i*8].weather[0].icon)
+var iconurl = "http://openweathermap.org/img/w/" + (response.list[i*8].weather[0].icon) + ".png";
+console.log(iconurl);
+
+var img = $("<img>");
+//<img>
+img.attr("src", iconurl);
+//<img src=iconurl>
+img.attr("class", "fiveDayIcon");
+//<img src=iconurl class="fiveDayIcon">
+
+      //weather icon
+      var p1=$("<p>");
       //<p></p>
+      p1.append(img);
+
+      //temp
+      var p2=$("<p>");
+      p2.text("Temp: "+(response.list[i*8].main.temp)+" \u00B0"+"F");
+      //var tempNum=(((response.main.temp-273.15)*1.8)+32);
+      //var todayTemp="Temperature: "+tempNum.toFixed(2)+" \u00B0"+"F";
+
+      //humidity
+      var p3=$("<p>");
+      p3.text("Humidity: "+response.list[i*8].main.humidity+"%");
 
       //append it together
       d1.append(d2);
       d2.append(d3);
       d3.append(h5);
-      d3.append(p);
+      d3.append(p1);
+      p1.append(p2);
+      p2.append(p3);
+
 
       //append via html (#fiveday)
       $("#fiveday").append(d1);
 
       //date
       console.log(response.list[i*8].dt_txt);
-      //icon  // //the following is the icon
-      console.log(response.list[i*8].weather[0].icon)
-      //temp
+      
+      
+       //temp
       console.log(response.list[i*8].main.temp)
       //humidty
       console.log(response.list[i*8].main.humidity)
+      
+
     }
     
-   
-
-   
-
+  
   });
 
 }
