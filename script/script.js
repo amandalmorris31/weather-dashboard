@@ -61,6 +61,9 @@ $.ajax({
       
     //A. get the data (console.log it) 
     console.log(response);
+
+    //today
+    // console.log(moment(response.list[i*8].dt_txt).format('L'));
      
     // (temp, 
     console.log(response.main.temp)
@@ -72,7 +75,9 @@ $.ajax({
 
     //city
     console.log(response.name);
-    $("#currentCity").text(response.name);
+    $("#currentCity").text(response.name)+" Today";
+    // $("#currentCity").text(moment.format('L');
+    
 
     //humidity,
     console.log(response.main.humidity)
@@ -154,9 +159,9 @@ $.ajax({
     method: "GET"
   }).then(function(response) {
 
-    // <div class="col mb-2">
-    //     <div class="card h-100 text-white bg-info">
-    //         <div class="card-body">
+    // <div class="col mb-2">  d1
+    //     <div class="card h-100 text-white bg-info">  d2
+    //         <div class="card-body">  d3
     //           <h5 class="card-title">Date 1</h5>
     //           <p class="card-text">This is text. </p>
     //         </div>
@@ -167,8 +172,6 @@ $.ajax({
      //     //B.dynamically create the city in front end
     for (var i = 0; i < 5; i++) {
 
-
-
       var d1=$("<div>");
       //<div></div>
       d1.attr("class","col mb-2");
@@ -176,7 +179,7 @@ $.ajax({
       
       var d2=$("<div>");
       //<div></div>
-      d2.attr("class","card-body");
+      d2.attr("class","card h-100");
 
 
       var d3=$("<div>");
@@ -184,11 +187,10 @@ $.ajax({
       d3.attr("class", "card-body");
 
       
-      
       //date
-      var h5=$("<h5>");
-      //<h5></h5>
-      h5.text(moment(response.list[i*8].dt_txt).format('L'));
+      var h6=$("<h6>");
+      //<h6></h6>
+      h6.text(moment(response.list[i*8].dt_txt).format('L'));
       
 
 
@@ -210,8 +212,14 @@ img.attr("class", "fiveDayIcon");
       p1.append(img);
 
       //temp
+      var fiveTemp=(((response.list[i*8].main.temp-273.15)*1.8)+32);
+      console.log(fiveTemp);
+
       var p2=$("<p>");
-      p2.text("Temp: "+(response.list[i*8].main.temp)+" \u00B0"+"F");
+      p2.text("Temp: "+(fiveTemp.toFixed(2))+" \u00B0"+"F");
+      
+
+      // response.main.temp-273.15)*1.8)+32
       //var tempNum=(((response.main.temp-273.15)*1.8)+32);
       //var todayTemp="Temperature: "+tempNum.toFixed(2)+" \u00B0"+"F";
 
@@ -222,7 +230,7 @@ img.attr("class", "fiveDayIcon");
       //append it together
       d1.append(d2);
       d2.append(d3);
-      d3.append(h5);
+      d3.append(h6);
       d3.append(p1);
       p1.append(p2);
       p2.append(p3);

@@ -63,9 +63,19 @@ li button:hover {
 
 .card-body {
   background-color: darkcyan;
+  padding: 0;
+  align-content: center;
 }
 .card-body p {
-font-size: 14px;
-font-weight: bold;
+  font-size: 14px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+
+h5 {
+  font-size: 1rem;
+}
+
 
 }
