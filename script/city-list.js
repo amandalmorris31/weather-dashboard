@@ -16,6 +16,12 @@ function submitCity(event) {
   fiveDay(cityVal);
 }
 
+function cityChoice(event) {
+  oneDay(event.target.textContent);
+  fiveDay(event.target.textContent);
+// console.log(event);
+
+}
 
 
 function renderCities() {
@@ -28,11 +34,12 @@ function renderCities() {
     var city = cities[i];
 
     var li = document.createElement("li");
+    li.onclick=cityChoice;
+    
     li.textContent = city;
     li.setAttribute("data-index", i);
 
- 
-    $(cityList).append(li);
+    $(cityList).prepend(li);
     console.log(li);
   }
 }

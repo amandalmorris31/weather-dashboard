@@ -162,7 +162,7 @@ $.ajax({
     // <div class="col mb-2">  d1
     //     <div class="card h-100 text-white bg-info">  d2
     //         <div class="card-body">  d3
-    //           <h5 class="card-title">Date 1</h5>
+    //           <h6 class="card-title">Date 1</h5>
     //           <p class="card-text">This is text. </p>
     //         </div>
     //     </div>
@@ -193,18 +193,17 @@ $.ajax({
       h6.text(moment(response.list[i*8].dt_txt).format('L'));
       
 
+      //icon  // //the following is the icon
+      console.log(response.list[i*8].weather[0].icon)
+      var iconurl = "http://openweathermap.org/img/w/" + (response.list[i*8].weather[0].icon) + ".png";
+      console.log(iconurl);
 
-//icon  // //the following is the icon
-console.log(response.list[i*8].weather[0].icon)
-var iconurl = "http://openweathermap.org/img/w/" + (response.list[i*8].weather[0].icon) + ".png";
-console.log(iconurl);
-
-var img = $("<img>");
-//<img>
-img.attr("src", iconurl);
-//<img src=iconurl>
-img.attr("class", "fiveDayIcon");
-//<img src=iconurl class="fiveDayIcon">
+      var img = $("<img>");
+      //<img>
+      img.attr("src", iconurl);
+      //<img src=iconurl>
+      img.attr("class", "fiveDayIcon");
+      //<img src=iconurl class="fiveDayIcon">
 
       //weather icon
       var p1=$("<p>");
